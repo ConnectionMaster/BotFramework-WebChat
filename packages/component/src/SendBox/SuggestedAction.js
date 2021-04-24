@@ -13,13 +13,13 @@ import useSuggestedActionsAccessKey from '../hooks/internal/useSuggestedActionsA
 import useStyleSet from '../hooks/useStyleSet';
 import useStyleToEmotionObject from '../hooks/internal/useStyleToEmotionObject';
 
-const { useDirection, useDisabled, usePerformCardAction, useSuggestedActions } = hooks;
+const { useDirection, useDisabled, usePerformCardAction, useStyleOptions, useSuggestedActions } = hooks;
 
 const ROOT_STYLE = {
   '&.webchat__suggested-action': {
     '& .webchat__suggested-action__button': {
       display: 'flex',
-      overflow: 'hidden' // Prevent image from leaking
+      overflow: 'hidden' // Prevent image from leaking; object-fit does not work with IE11
     }
   }
 };
@@ -45,10 +45,12 @@ const SuggestedAction = ({
   image,
   imageAlt,
   text,
+  textClassName,
   type,
   value
 }) => {
   const [_, setSuggestedActions] = useSuggestedActions();
+  const [{ suggestedActionsStackedLayoutButtonTextWrap }] = useStyleOptions();
   const [{ suggestedAction: suggestedActionStyleSet }] = useStyleSet();
   const [accessKey] = useSuggestedActionsAccessKey();
   const [direction] = useDirection();
@@ -88,7 +90,9 @@ const SuggestedAction = ({
     >
       <AccessibleButton
         {...(accessKey ? { 'aria-keyshortcuts': localizeAccessKey(accessKey) } : {})}
-        className="webchat__suggested-action__button"
+        className={classNames('webchat__suggested-action__button', {
+          'webchat__suggested-action--wrapping': suggestedActionsStackedLayoutButtonTextWrap
+        })}
         disabled={disabled}
         onClick={handleClick}
         ref={focusRef}
@@ -104,7 +108,7 @@ const SuggestedAction = ({
             src={image}
           />
         )}
-        <span className="webchat__suggested-action__text">{buttonText}</span>
+        <span className={classNames('webchat__suggested-action__text', (textClassName || '') + '')}>{buttonText}</span>
       </AccessibleButton>
     </div>
   );
@@ -117,6 +121,7 @@ SuggestedAction.defaultProps = {
   image: '',
   imageAlt: undefined,
   text: '',
+  textClassName: '',
   type: '',
   value: undefined
 };
@@ -129,6 +134,7 @@ SuggestedAction.propTypes = {
   image: PropTypes.string,
   imageAlt: PropTypes.string,
   text: PropTypes.string,
+  textClassName: PropTypes.string,
   type: PropTypes.string,
   value: PropTypes.any
 };

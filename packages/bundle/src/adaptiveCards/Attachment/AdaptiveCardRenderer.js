@@ -11,6 +11,7 @@ import useAdaptiveCardsPackage from '../hooks/useAdaptiveCardsPackage';
 const { ErrorBox } = Components;
 const { useDisabled, useLocalizer, usePerformCardAction, useRenderMarkdownAsHTML, useScrollToEnd, useStyleSet } = hooks;
 
+// eslint-disable-next-line no-undef
 const node_env = process.env.node_env || process.env.NODE_ENV;
 
 function addClass(element, className) {
@@ -84,6 +85,12 @@ function addEventListenerOnceWithUndo(element, name, handler) {
   return detach;
 }
 
+function addEventListenerWithUndo(element, name, handler) {
+  element.addEventListener(name, handler);
+
+  return () => element.removeEventListener(name, handler);
+}
+
 function disableElementWithUndo(element) {
   const undoStack = [];
   const isActive = element === document.activeElement;
@@ -91,12 +98,6 @@ function disableElementWithUndo(element) {
 
   /* eslint-disable-next-line default-case */
   switch (tag) {
-    // Should we not disable <a>? Will some of the <a> are styled as button?
-    case 'a':
-      undoStack.push(addEventListenerOnceWithUndo(element, 'click', disabledHandler));
-
-      break;
-
     case 'button':
     case 'input':
     case 'select':
@@ -114,7 +115,7 @@ function disableElementWithUndo(element) {
       }
 
       if (tag === 'input' || tag === 'textarea') {
-        undoStack.push(addEventListenerOnceWithUndo(element, 'click', disabledHandler));
+        undoStack.push(addEventListenerWithUndo(element, 'click', disabledHandler));
         undoStack.push(setAttributeWithUndo(element, 'readonly', 'readonly'));
       } else if (tag === 'select') {
         undoStack.push(
@@ -131,7 +132,7 @@ function disableElementWithUndo(element) {
 }
 
 function disableInputElementsWithUndo(element, observeSubtree = true) {
-  const undoStack = [].map.call(element.querySelectorAll('a, button, input, select, textarea'), element =>
+  const undoStack = [].map.call(element.querySelectorAll('button, input, select, textarea'), element =>
     disableElementWithUndo(element)
   );
 
@@ -433,6 +434,14 @@ const AdaptiveCardRenderer = ({ actionPerformedClassName, adaptiveCard, disabled
   }, [adaptiveCard]);
 
   useEffect(() => {
+    // Add aria-pressed and role attribute to the AC action button selected by the user.
+    actionsPerformed.forEach(({ renderedElement }) => {
+      if (renderedElement && adaptiveCardElementRef.current.contains(renderedElement)) {
+        setAttributeWithUndo(renderedElement, 'aria-pressed', 'true');
+        setAttributeWithUndo(renderedElement, 'role', 'button');
+      }
+    });
+
     // Add developers to highlight actions when they have been clicked.
     if (!actionPerformedClassName) {
       return;

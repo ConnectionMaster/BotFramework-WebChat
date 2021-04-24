@@ -1,12 +1,12 @@
-import { imageSnapshotOptions, timeouts } from './constants.json';
+import { logging } from 'selenium-webdriver';
 
+import { imageSnapshotOptions, timeouts } from './constants.json';
 import allImagesLoaded from './setup/conditions/allImagesLoaded';
 import minNumActivitiesShown from './setup/conditions/minNumActivitiesShown';
 import scrollToBottomCompleted from './setup/conditions/scrollToBottomCompleted';
 import uiConnected from './setup/conditions/uiConnected';
 
 import createAdaptiveCardsHostConfig from '../packages/bundle/src/adaptiveCards/Styles/adaptiveCardHostConfig';
-import defaultStyleOptions from '../packages/component/src/Styles/defaultStyleOptions';
 
 // selenium-webdriver API doc:
 // https://seleniumhq.github.io/selenium/docs/api/javascript/module/selenium-webdriver/index_exports_WebDriver.html
@@ -56,7 +56,7 @@ test('action styles', async () => {
 });
 
 test('breakfast card with custom host config', async () => {
-  const adaptiveCardHostConfig = createAdaptiveCardsHostConfig({ ...defaultStyleOptions, bubbleTextColor: '#FF0000' });
+  const adaptiveCardHostConfig = createAdaptiveCardsHostConfig({ bubbleTextColor: '#FF0000' });
 
   const { driver, pageObjects } = await setupWebDriver({
     props: {
@@ -111,6 +111,7 @@ test('disable card inputs', async () => {
     document.querySelector('.ac-adaptiveCard input[type="radio"]').checked = true;
     document.querySelector('.ac-adaptiveCard input[type="text"]').value = 'William';
     document.querySelector('.ac-adaptiveCard input[type="time"]').value = '12:34';
+    document.querySelector('.ac-adaptiveCard input[type="number"]').value = '1';
     document.querySelector('.ac-adaptiveCard select').value = '1';
     document.querySelector('.ac-adaptiveCard textarea').value = 'One Redmond Way, Redmond, WA';
   });
@@ -125,6 +126,9 @@ test('disable card inputs', async () => {
     document.querySelector('.ac-actionSet button:nth-of-type(2)').click();
   });
 
+  //@todo change to use scrollStabilizer after release
+  await new Promise(resolve => setTimeout(resolve, 1000));
+
   expect(await driver.takeScreenshot()).toMatchImageSnapshot(imageSnapshotOptions);
 
   await pageObjects.updateProps({ disabled: false });
@@ -133,6 +137,9 @@ test('disable card inputs', async () => {
   await driver.executeScript(() => {
     document.querySelector('.ac-actionSet button:nth-of-type(2)').click();
   });
+
+  //@todo change to use scrollStabilizer after release
+  await new Promise(resolve => setTimeout(resolve, 1000));
 
   await driver.wait(minNumActivitiesShown(3), timeouts.directLine);
   await driver.wait(scrollToBottomCompleted(), timeouts.scrollToBottom);
@@ -147,6 +154,70 @@ test('broken card of invalid version', async () => {
   await pageObjects.sendMessageViaSendBox('card broken', { waitForSend: true });
 
   await driver.wait(minNumActivitiesShown(2), timeouts.directLine);
+
+  const base64PNG = await driver.takeScreenshot();
+
+  expect(base64PNG).toMatchImageSnapshot(imageSnapshotOptions);
+});
+
+test('unknown card', async () => {
+  const { driver, pageObjects } = await setupWebDriver();
+
+  await driver.wait(uiConnected(), timeouts.directLine);
+  await pageObjects.sendMessageViaSendBox('card unknown', { waitForSend: true });
+
+  await driver.wait(minNumActivitiesShown(2), timeouts.directLine);
+
+  const browserConsoleErrors = await driver.manage().logs().get(logging.Type.BROWSER);
+
+  expect(browserConsoleErrors[0].level.name_).toEqual('WARNING');
+  expect(browserConsoleErrors[0].message).toContain('No renderer for attachment for screen reader of type');
+});
+
+test('Inputs card with custom style options and submit action', async () => {
+  const { driver, pageObjects } = await setupWebDriver({
+    props: {
+      styleOptions: {
+        cardPushButtonBackgroundColor: '#ee0606',
+        cardPushButtonTextColor: '#ee0606'
+      }
+    }
+  });
+
+  await driver.wait(uiConnected(), timeouts.directLine);
+  await pageObjects.sendMessageViaSendBox('card inputs', { waitForSend: true });
+
+  await driver.wait(minNumActivitiesShown(2), timeouts.directLine);
+  await driver.wait(allImagesLoaded(), timeouts.fetchImage);
+
+  // To submit the input form, the number field is mandatory.
+  await driver.executeScript(() => {
+    document.querySelector('.ac-adaptiveCard input[type="number"]').value = '1';
+  });
+
+  // Click "Submit" button should change the button color
+  await driver.executeScript(() => {
+    document.querySelector('.ac-actionSet button:nth-of-type(2)').click();
+  });
+
+  //@todo change to use scrollStabilizer after release
+  await new Promise(resolve => setTimeout(resolve, 1000));
+
+  const base64PNG = await driver.takeScreenshot();
+
+  expect(base64PNG).toMatchImageSnapshot(imageSnapshotOptions);
+});
+
+test('Textblock styles', async () => {
+  const { driver, pageObjects } = await setupWebDriver();
+
+  await driver.wait(uiConnected(), timeouts.directLine);
+  await pageObjects.sendMessageViaSendBox('card textstyle', { waitForSend: true });
+
+  await driver.wait(minNumActivitiesShown(2), timeouts.directLine);
+  await driver.wait(allImagesLoaded(), timeouts.fetchImage);
+
+  await new Promise(resolve => setTimeout(resolve, 1000));
 
   const base64PNG = await driver.takeScreenshot();
 

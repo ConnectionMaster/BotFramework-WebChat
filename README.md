@@ -16,11 +16,50 @@ This repo is part of the [Microsoft Bot Framework](https://github.com/microsoft/
 
 # Version notes
 
-> This section points out important version notes. For further information, please see the related links and check the [`CHANGELOG.md`](https://github.com/microsoft/BotFramework-WebChat/blob/master/CHANGELOG.md)
+> This section points out important version notes. For further information, please see the related links and check the [`CHANGELOG.md`](https://github.com/microsoft/BotFramework-WebChat/blob/master/CHANGELOG.md
+
+### 4.12.1 patch: New style property `adaptiveCardsParserMaxVersion`
+
+Web Chat 4.12.1 patch includes a new style property allowing developers to choose the max Adaptive Cards schema version. See [PR #3778](https://github.com/microsoft/BotFramework-WebChat/pull/3778) for code changes.
+
+To specify a different max version, you can adjust the style options, shown below:
+
+```js
+window.WebChat.renderWebChat(
+   {
+      directLine,
+      store,
+      styleOptions: {
+         adaptiveCardsParserMaxVersion: '1.2'
+      }
+   },
+   document.getElementById('webchat')
+);
+```
+
+-  Web Chat will apply the maximum schema available according to the Adaptive Cards version (as of this patch, schema 1.3) by default.
+-  An invalid version will revert to Web Chat's default.
+
+## Visual focus changes to transcript in Web Chat 4.12.0
+
+A new accessibility update has been added to Web Chat from PR [#3703](https://github.com/microsoft/BotFramework-WebChat/pull/3703). This change creates visual focus for the transcript (bold black border) and `aria-activedescendent` focused activity (black dashed border) by default. Where applicable, `transcriptVisualKeyboardIndicator...` values will also be applied to carousel (`CarouselFilmStrip.js`) children. This is done in order to match current default focus styling for Adaptive Cards, which may be a child of a carousel.
+
+To modify these styles, you can change the following props via `styleOptions`:
+
+```
+  transcriptActivityVisualKeyboardIndicatorColor: DEFAULT_SUBTLE,
+  transcriptActivityVisualKeyboardIndicatorStyle: 'dashed',
+  transcriptActivityVisualKeyboardIndicatorWidth: 1,
+  transcriptVisualKeyboardIndicatorColor: 'Black',
+  transcriptVisualKeyboardIndicatorStyle: 'solid',
+  transcriptVisualKeyboardIndicatorWidth: 2,
+```
+
+The above code shows the default values you will see in Web Chat.
 
 ## API refactor into new package in Web Chat 4.11.0
-The Web Chat API has been refactored into a separate package. To learn more, check out the [API refactor summary](https://github.com/microsoft/BotFramework-WebChat/pull/3543).
 
+The Web Chat API has been refactored into a separate package. To learn more, check out the [API refactor summary](https://github.com/microsoft/BotFramework-WebChat/pull/3543).
 
 ## Direct Line Speech support in Web Chat 4.7.0
 
@@ -226,6 +265,10 @@ Please note, however:
 -  Web Chat has no plan to support samples for IE11 (ES5).
    -  For customers who wish to manually rewrite our other samples to work in IE11, we recommend looking into converting code from ES6+ to ES5 using polyfills and transpilers like [`babel`](https://babeljs.io/docs/en/next/babel-standalone.html).
 
+## Accessibility
+
+View the [accessibility documentation](https://github.com/microsoft/BotFramework-WebChat/tree/master/docs/ACCESSIBILITY.md).
+
 ## Localization
 
 View the [localization documentation](https://github.com/microsoft/BotFramework-WebChat/tree/master/docs/LOCALIZATION.md) for implementing in Web Chat.
@@ -274,9 +317,7 @@ Dailies will be released after 3:00AM Pacific Standard Time when changes have be
 
 See our [Contributing page](https://github.com/microsoft/BotFramework-WebChat/tree/master/.github/CONTRIBUTING.md) for details on how to build the project and our repository guidelines for Pull Requests.
 
-This project has adopted the [Microsoft Open Source Code of Conduct](https://opensource.microsoft.com/codeofconduct/).
-For more information see the [Code of Conduct FAQ](https://opensource.microsoft.com/codeofconduct/faq/) or
-contact [opencode@microsoft.com](mailto:opencode@microsoft.com) with any additional questions or comments.
+See our [CODE OF CONDUCT page](https://github.com/microsoft/BotFramework-WebChat/blob/master/.github/CODE_OF_CONDUCT.md) for details about the Microsoft Code of Conduct.
 
 # Reporting Security Issues
 

@@ -1,4 +1,4 @@
-/* eslint no-magic-numbers: ["error", { "ignore": [0, 1, 2, 36] }] */
+/* eslint no-magic-numbers: ["error", { "ignore": [0, 1, 2, 4, 36] }] */
 
 import Observable from 'core-js/features/observable';
 import random from 'math-random';
@@ -7,9 +7,7 @@ import shareObservable from './shareObservable';
 import SpeechSynthesisAudioStreamUtterance from './SpeechSynthesisAudioStreamUtterance';
 
 function randomActivityId() {
-  return random()
-    .toString(36)
-    .substr(2);
+  return random().toString(36).substr(2);
 }
 
 export default class DirectLineSpeech {
@@ -24,7 +22,17 @@ export default class DirectLineSpeech {
 
         connectionStatusObserver.next(0);
         connectionStatusObserver.next(1);
-        connectionStatusObserver.next(2);
+
+        dialogServiceConnector.connect(
+          () => {
+            connectionStatusObserver.next(2);
+          },
+          error => {
+            connectionStatusObserver.next(4);
+
+            console.warn('botframework-directlinespeech-sdk: Failed to connect', { error });
+          }
+        );
       })
     );
 
@@ -48,6 +56,8 @@ export default class DirectLineSpeech {
               // Since DLSpeech service never ACK our outgoing activity, this activity must be from bot.
               role: 'bot'
             },
+            // Since DLSpeech never ACK our outgoing activity, the "replyToId" will rarely able to point to an existing activity.
+            replyToId: undefined,
             // Direct Line Speech server currently do not timestamp outgoing activities.
             // Thus, it will be easier to just re-timestamp every incoming/outgoing activities using local time.
             timestamp: new Date().toISOString()

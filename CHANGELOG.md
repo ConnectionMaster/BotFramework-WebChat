@@ -22,29 +22,223 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Fixed
+
+-  Fixes [#3814](https://github.com/microsoft/BotFramework-WebChat/issues/3814). Allow carousel's scrollable content to be tabbable, by [@corinagum](https://github.com/corinagum) in PR [#3841](https://github.com/microsoft/BotFramework-WebChat/pull/3841)
+-  Fixes [#3834](https://github.com/microsoft/BotFramework-WebChat/issues/3834). Ensure carousel attachments are read by AT on tab focus, by [@corinagum](https://github.com/corinagum) in PR [#3841](https://github.com/microsoft/BotFramework-WebChat/pull/3841)
+-  Fixes [#3812](https://github.com/microsoft/BotFramework-WebChat/issues/3812). Update `adaptiveCardHostConfig` to accessible text color-contrasts, by [@corinagum](https://github.com/corinagum) in PR [#3853](https://github.com/microsoft/BotFramework-WebChat/pull/3853)
+-  Fixes [#3816](https://github.com/microsoft/BotFramework-WebChat/issues/3816). De-bumped Node.js engine requirement for Direct Line Speech SDK to `>= 10.14.2` from `>= 12.0.0`, by [@compulim](https://github.com/compulim) in PR [#3854](https://github.com/microsoft/BotFramework-WebChat/pull/3854)
+
+### Changed
+
+-  Bumped all dependencies to the latest versions and sample bumps, by [@compulim](https://github.com/compulim) in PR [#3831](https://github.com/microsoft/BotFramework-WebChat/pull/3831) and PR [#3846](https://github.com/microsoft/BotFramework-WebChat/pull/3846)
+   -  Development dependencies
+      -  [`@azure/storage-blob@12.5.0`](https://npmjs.com/package/@azure/storage-blob)
+      -  [`@babel/cli@7.13.14`](https://npmjs.com/package/@babel/cli)
+      -  [`@babel/core@7.13.14`](https://npmjs.com/package/@babel/core)
+      -  [`@babel/plugin-proposal-async-generator-functions@7.13.8`](https://npmjs.com/package/@babel/plugin-proposal-async-generator-functions)
+      -  [`@babel/plugin-proposal-class-properties@7.13.0`](https://npmjs.com/package/@babel/plugin-proposal-class-properties)
+      -  [`@babel/plugin-proposal-object-rest-spread@7.13.8`](https://npmjs.com/package/@babel/plugin-proposal-object-rest-spread)
+      -  [`@babel/plugin-transform-runtime@7.13.10`](https://npmjs.com/package/@babel/plugin-transform-runtime)
+      -  [`@babel/preset-env@7.13.12`](https://npmjs.com/package/@babel/preset-env)
+      -  [`@babel/preset-react@7.13.13`](https://npmjs.com/package/@babel/preset-react)
+      -  [`@babel/preset-typescript@7.13.0`](https://npmjs.com/package/@babel/preset-typescript)
+      -  [`@babel/runtime@7.13.10`](https://npmjs.com/package/@babel/runtime)
+      -  [`@babel/standalone@7.13.14`](https://npmjs.com/package/@babel/standalone)
+      -  [`@fluentui/react@8.9.0`](https://npmjs.com/package/@fluentui/react)
+      -  [`@types/node@14.14.37`](https://npmjs.com/package/@types/node)
+      -  [`@types/react@17.0.3`](https://npmjs.com/package/@types/react)
+      -  [`@typescript-eslint/eslint-plugin@4.21.0`](https://npmjs.com/package/@typescript-eslint/eslint-plugin)
+      -  [`@typescript-eslint/parser@4.21.0`](https://npmjs.com/package/@typescript-eslint/parser)
+      -  [`abort-controller-es5@1.2.0`](https://npmjs.com/package/abort-controller-es5)
+      -  [`abort-controller@3.0.0`](https://npmjs.com/package/abort-controller)
+      -  [`babel-loader@8.2.2`](https://npmjs.com/package/babel-loader)
+      -  [`base64-arraybuffer@0.2.0`](https://npmjs.com/package/base64-arraybuffer)
+      -  [`botbuilder-dialogs@4.12.0`](https://npmjs.com/package/botbuilder-dialogs)
+      -  [`botbuilder@4.12.0`](https://npmjs.com/package/botbuilder)
+      -  [`classnames@2.3.1`](https://npmjs.com/package/classnames)
+      -  [`concurrently@6.0.1`](https://npmjs.com/package/concurrently)
+      -  [`copy-webpack-plugin@6.4.1`](https://npmjs.com/package/copy-webpack-plugin)
+      -  [`core-js@3.10.0`](https://npmjs.com/package/core-js)
+      -  [`cross-env@7.0.3`](https://npmjs.com/package/cross-env)
+      -  [`css-loader@5.2.0`](https://npmjs.com/package/css-loader)
+      -  [`dotenv@8.2.0`](https://npmjs.com/package/dotenv)
+      -  [`eslint-config-standard@16.0.2`](https://npmjs.com/package/eslint-config-standard)
+      -  [`eslint-plugin-import@2.22.1`](https://npmjs.com/package/eslint-plugin-import)
+      -  [`eslint-plugin-node@11.1.0`](https://npmjs.com/package/eslint-plugin-node)
+      -  [`eslint-plugin-promise@4.3.1`](https://npmjs.com/package/eslint-plugin-promise)
+      -  [`eslint-plugin-react@7.23.1`](https://npmjs.com/package/eslint-plugin-react)
+      -  [`eslint-plugin-react@7.23.1`](https://npmjs.com/package/eslint-plugin-react)
+      -  [`eslint-plugin-standard@5.0.0`](https://npmjs.com/package/eslint-plugin-standard)
+      -  [`eslint@7.23.0`](https://npmjs.com/package/eslint)
+      -  [`event-iterator@2.0.0`](https://npmjs.com/package/event-iterator)
+      -  [`global-agent@2.2.0`](https://npmjs.com/package/global-agent)
+      -  [`html-webpack-plugin@4.5.2`](https://npmjs.com/package/html-webpack-plugin)
+      -  [`http-proxy-middleware@1.1.0`](https://npmjs.com/package/http-proxy-middleware)
+      -  [`husky@6.0.0`](https://npmjs.com/package/husky)
+      -  [`jest-image-snapshot@4.4.1`](https://npmjs.com/package/jest-image-snapshot)
+      -  [`lerna@4.0.0`](https://npmjs.com/package/lerna)
+      -  [`lint-staged@10.5.4`](https://npmjs.com/package/lint-staged)
+      -  [`lolex@6.0.0`](https://npmjs.com/package/lolex)
+      -  [`math-random@2.0.1`](https://npmjs.com/package/math-random)
+      -  [`msal@1.4.9`](https://npmjs.com/package/msal)
+      -  [`node-dev@6.6.0`](https://npmjs.com/package/node-dev)
+      -  [`nodemon@2.0.7`](https://npmjs.com/package/nodemon)
+      -  [`office-ui-fabric-react@7.165.2`](https://npmjs.com/package/office-ui-fabric-react)
+      -  [`p-defer-es5@1.2.1`](https://npmjs.com/package/p-defer-es5)
+      -  [`p-defer@3.0.0`](https://npmjs.com/package/p-defer)
+      -  [`prettier@2.2.1`](https://npmjs.com/package/prettier)
+      -  [`react-redux@7.2.3`](https://npmjs.com/package/react-redux)
+      -  [`react-scripts@4.0.3`](https://npmjs.com/package/react-scripts)
+      -  [`redux@4.0.5`](https://npmjs.com/package/redux)
+      -  [`restify@8.5.1`](https://npmjs.com/package/restify)
+      -  [`selenium-webdriver@4.0.0-beta.2`](https://npmjs.com/package/selenium-webdriver)
+      -  [`simple-update-in@2.2.0`](https://npmjs.com/package/simple-update-in)
+      -  [`source-map-loader@1.1.3`](https://npmjs.com/package/source-map-loader)
+      -  [`string-similarity@4.0.4`](https://npmjs.com/package/string-similarity)
+      -  [`style-loader@2.0.0`](https://npmjs.com/package/style-loader)
+      -  [`uuid@8.3.2`](https://npmjs.com/package/uuid)
+      -  [`webpack-cli@4.6.0`](https://npmjs.com/package/webpack-cli)
+      -  [`webpack-stats-plugin@1.0.3`](https://npmjs.com/package/webpack-stats-plugin)
+      -  [`webpack@4.46.0`](https://npmjs.com/package/webpack)
+   -  Production dependencies
+      -  [`@emotion/css@11.1.3`](https://npmjs.com/package/@emotion/css), moved from [`create-emotion`](https://npmjs.com/package/create-emotion)
+      -  [`adaptivecards@2.9.0`](https://npmjs.com/package/adaptivecards)
+      -  [`classnames@2.3.1`](https://npmjs.com/package/classnames)
+      -  [`core-js@3.10.0`](https://npmjs.com/package/core-js)
+      -  [`react-redux@7.2.3`](https://npmjs.com/package/react-redux)
+      -  [`redux-devtools-extension@2.13.9`](https://npmjs.com/package/redux-devtools-extension)
+      -  [`url-search-params-polyfill@8.1.1`](https://npmjs.com/package/url-search-params-polyfill)
+      -  [`whatwg-fetch@3.6.2`](https://npmjs.com/package/whatwg-fetch)
+
+## [4.13.0] - 2021-04-05
+
 ### Added
 
--  Resolves [#2745](https://github.com/microsoft/BotFramework-WebChat/issues/2745). Added new `inline` layout to suggested actions, by [@compulim](https://github.com/compulim) in PR [#3641](https://github.com/microsoft/BotFramework-WebChat/pull/3641)
+-  Resolves [#3087](https://github.com/microsoft/BotFramework-WebChat/issues/3087). External links in Markdown will now be appended with an "open in new window" icon and accessibility label, by [@compulim](https://github.com/compulim) in PR [#3817](https://github.com/microsoft/BotFramework-WebChat/pull/3817)
+-  Resolves [#2100](https://github.com/microsoft/BotFramework-WebChat/issues/2100). Add types declarations for Style Options in api bundle, by [@corinagum](https://github.com/corinagum), in PR [#3818](https://github.com/microsoft/BotFramework-WebChat/pull/3818)
+-  Fixes [#3810](https://github.com/microsoft/BotFramework-WebChat/issues/3810). Removes `aria-hidden` from elements that have a focusable child, by [@corinagum](https://github.com/corinagum) in PR [#3836](https://github.com/microsoft/BotFramework-WebChat/pull/3836)
+-  Fixes [#3811](https://github.com/microsoft/BotFramework-WebChat/issues/3811). Removes erroneous `aria-labelledby` from carousel, by [@corinagum](https://github.com/corinagum) in PR [#3836](https://github.com/microsoft/BotFramework-WebChat/pull/3836)
+
+### Changed
+
+-  Bumped all dependencies to the latest versions and sample bumps, by [@corinagum](https://github.com/corinagum) in PR [#3805](https://github.com/microsoft/BotFramework-WebChat/pull/3805)
+   -  Development dependencies
+      -  [`@babel/cli@7.13.10`](https://npmjs.com/package/@babel/cli)
+      -  [`@babel/core@7.13.10`](https://npmjs.com/package/@babel/core)
+      -  [`@babel/plugin-proposal-class-properties@7.13.0`](https://npmjs.com/package/@babel/plugin-proposal-class-properties)
+      -  [`@babel/plugin-proposal-object-rest-spread@7.13.8`](https://npmjs.com/package/@babel/plugin-proposal-object-rest-spread)
+      -  [`@babel/plugin-transform-runtime@7.13.10`](https://npmjs.com/package/@babel/plugin-transform-runtime)
+      -  [`@babel/preset-env@7.13.10`](https://npmjs.com/package/@babel/preset-env)
+      -  [`@babel/preset-react@7.12.13`](https://npmjs.com/package/@babel/preset-react)
+      -  [`@babel/preset-typescript@7.13.0`](https://npmjs.com/package/@babel/preset-typescript)
+      -  [`@babel/runtime@7.13.10`](https://npmjs.com/package/@babel/runtime)
+      -  [`@types/node@14.14.35`](https://npmjs.com/package/@types/node)
+      -  [`@types/react@16.9.55`](https://npmjs.com/package/@types/react)
+      -  [`@typescript-eslint/eslint-plugin@4.18.0`](https://npmjs.com/package/@typescript-eslint/eslint-plugin)
+      -  [`@typescript-eslint/parser@4.18.0`](https://npmjs.com/package/@typescript-eslint/parser)
+      -  [`babel-jest@26.6.3`](https://npmjs.com/package/babel-jest)
+      -  [`eslint-plugin-prettier@3.3.1`](https://npmjs.com/package/eslint-plugin-prettier)
+      -  [`eslint-plugin-react-hooks@4.2.0`](https://npmjs.com/package/eslint-plugin-react-hooks)
+      -  [`eslint-plugin-react@7.22.0`](https://npmjs.com/package/eslint-plugin-react)
+      -  [`eslint@7.22.0`](https://npmjs.com/package/eslint)
+      -  [`husky@4.3.0`](https://npmjs.com/package/husky)
+      -  [`jest-image-snapshot@4.2.0`](https://npmjs.com/package/jest-image-snapshot)
+      -  [`jest-junit@12.0.0`](https://npmjs.com/package/jest-junit)
+      -  [`jest-trx-results-processor@2.2.0`](https://npmjs.com/package/jest-trx-results-processor)
+      -  [`jest@26.6.3`](https://npmjs.com/package/jest)
+      -  [`lint-staged@10.5.1`](https://npmjs.com/package/lint-staged)
+      -  [`lolex@6.0.0`](https://npmjs.com/package/lolex)
+      -  [`node-dev@6.4.0`](https://npmjs.com/package/node-dev)
+      -  [`node-fetch@2.6.1`](https://npmjs.com/package/node-fetch)
+      -  [`prettier@2.2.1`](https://npmjs.com/package/prettier)
+      -  [`source-map-loader@1.1.2`](https://npmjs.com/package/source-map-loader)
+      -  [`terser-webpack-plugin@4.2.3`](https://npmjs.com/package/terser-webpack-plugin)
+      -  [`typescript@4.2.3`](https://npmjs.com/package/typescript)
+      -  [`webpack-cli@4.2.0`](https://npmjs.com/package/webpack-cli)
+      -  [`webpack-stats-plugin@1.0.2`](https://npmjs.com/package/webpack-stats-plugin)
+      -  [`webpack@4.44.2`](https://npmjs.com/package/webpack)
+   -  Production dependencies
+      -  [`@babel/runtime@7.13.10`](https://npmjs.com/package/@babel/runtime)
+      -  [`botframework-directlinejs@0.14.1`](https://npmjs.com/package/botframework-directlinejs)
+      -  [`globalize@1.6.0`](https://npmjs.com/package/globalize)
+      -  [`markdown-it@12.0.4`](https://npmjs.com/package/markdown-it)
+      -  [`microsoft-cognitiveservices-speech-sdk@1.15.1`](https://npmjs.com/package/microsoft-cognitiveservices-speech-sdk)
+      -  [`react-redux@7.2.2`](https://npmjs.com/package/react-redux)
+      -  [`redux@4.0.5`](https://npmjs.com/package/redux)
+      -  [`sanitize-html@2.1.2`](https://npmjs.com/package/sanitize-html)
+      -  [`web-speech-cognitive-services@7.1.0`](https://npmjs.com/package/web-speech-cognitive-services)
+      -  [`whatwg-fetch@3.4.1`](https://npmjs.com/package/whatwg-fetch)
+
+### Samples
+
+-  Fixes [#3632](https://github.com/microsoft/BotFramework-WebChat/issues/3632). Fixed typo in reaction button sample, by [@compulim](https://github.com/compulim) in PR [#3820](https://github.com/microsoft/BotFramework-WebChat/pull/3820)
+
+## [4.12.1] - 2021-03-16
+
+### Added
+
+-  Resolves [#3777](https://github.com/microsoft/BotFramework-WebChat/issues/3777). Added a new `adaptiveCardsParserMaxVersion` style options for selecting the maximum supported version when parsing an Adaptive Cards, by [@compulim](https://github.com/compulim) in PR [#3778](https://github.com/microsoft/BotFramework-WebChat/pull/3778)
+
+### Fixed
+
+-  Fixes [#3773](https://github.com/microsoft/BotFramework-WebChat/issues/3773). Remove `replyToId` when using Direct Line Speech adapter, by [@compulim](https://github.com/compulim) in PR [#3776](https://github.com/microsoft/BotFramework-WebChat/pull/3776)
+
+### Samples
+
+-  Fixes [#3632](https://github.com/microsoft/BotFramework-WebChat/issues/3632). Update reaction button sample : Add replyToId to the postActivity object, by [@amal-khalaf](https://github.com/amal-khalaf) in PR [#3769](https://github.com/microsoft/BotFramework-WebChat/pull/3769)
+-  Fixes [#2343](https://github.com/microsoft/BotFramework-WebChat/issues/2343). Add sample for Direct Line tokens, by [@navzam](https://github.com/navzam), in PR [#3779](https://github.com/microsoft/BotFramework-WebChat/pull/3779)
+
+## [4.12.0] - 2021-03-01
+
+### Added
+
+-  Resolves [#2745](https://github.com/microsoft/BotFramework-WebChat/issues/2745). Added new `flow` layout to suggested actions, by [@compulim](https://github.com/compulim) in PR [#3641](https://github.com/microsoft/BotFramework-WebChat/pull/3641) and PR [#3748](https://github.com/microsoft/BotFramework-WebChat/pull/3748)
 -  Added new style options to customize auto-scroll, by [@compulim](https://github.com/compulim) in PR [#3653](https://github.com/microsoft/BotFramework-WebChat/pull/3653)
    -  Set `autoScrollSnapOnActivity` to `true` to pause auto-scroll after more than one activity is shown, or a number to pause after X number of activities
    -  Set `autoScrollSnapOnPage` to `true` to pause auto-scroll when a page is filled, or a number between `0` and `1` to pause after % of page is filled
    -  Set `autoScrollSnapOnActivityOffset` and `autoScrollSnapOnPageOffset` to a number (in pixels) to overscroll/underscroll after the pause
 -  Supports multiple transcripts in a single composition, by [@compulim](https://github.com/compulim) in PR [#3653](https://github.com/microsoft/BotFramework-WebChat/pull/3653)
 -  Resolves [#3368](https://github.com/microsoft/BotFramework-WebChat/issues/3368). Added new `sendBoxButtonAlignment` for button alignment in multi-line text mode, by [@compulim](https://github.com/compulim) in PR [#3668](https://github.com/microsoft/BotFramework-WebChat/pull/3668)
+-  Resolves [#3666](https://github.com/microsoft/BotFramework-WebChat/issues/3666). Added support of sovereign clouds when using Direct Line Speech, by [@compulim](https://github.com/compulim) in PR [#3694](https://github.com/microsoft/BotFramework-WebChat/pull/3694)
+   -  Please refer to [`DIRECT_LINE_SPEECH.md`](https://github.com/microsoft/BotFramework-WebChat/blob/master/docs/DIRECT_LINE_SPEECH.md#directlinespeechcredentials) for instructions
+-  Resolves [#2996](https://github.com/microsoft/BotFramework-WebChat/issues/2996). Added transcript navigation by keyboard navigation keys, by [@compulim](https://github.com/compulim) in PR [#3703](https://github.com/microsoft/BotFramework-WebChat/pull/3703)
+-  Resolves [#3544](https://github.com/microsoft/BotFramework-WebChat/issues/3544). Send user ID from props to chat adapter, by [@timenick](https://github.com/timenick) in PR [#3544)(https://github.com/microsoft/BotFramework-WebChat/issues/3544).
+-  Resolves [#3562](https://github.com/microsoft/BotFramework-WebChat/issues/3562). Add button word wrap to suggested actions stacked layout, by [@corinagum](https://github.com/corinagum), in PR [#3728](https://github.com/microsoft/BotFramework-WebChat/pull/3728) and [#3745](https://github.com/microsoft/BotFramework-WebChat/pull/3745)
+-  Resolves [#3658](https://github.com/microsoft/BotFramework-WebChat/issues/3658). Added new `containerRole` to default style options, by [@nfreear](https://github.com/nfreear) in PR [#3669](https://github.com/microsoft/BotFramework-WebChat/pull/3669)
+-  Resolves [#3754](https://github.com/microsoft/BotFramework-WebChat/issues/3754). Added new `useObserveTranscriptFocus` hook, by [@compulim](https://github.com/compulim) in PR [#3755](https://github.com/microsoft/BotFramework-WebChat/pull/3755)
+-  Translation for Yue, by [@compulim](https://github.com/compulim) in PR [#3749](https://github.com/microsoft/BotFramework-WebChat/pulls/3749)
 
 ### Fixed
 
 -  Fixes [#3278](https://github.com/microsoft/BotFramework-WebChat/issues/3278). Update `HOOKS.md` verbiage, by [@corinagum](https://github.com/corinagum) in PR [#3564](https://github.com/microsoft/BotFramework-WebChat/pull/3564)
--  Fixes [#3534](https://github.com/microsoft/BotFramework-WebChat/issues/3534). Remove 2020 deprecations, by [@corinagum](https://github.com/corinagum) in PR [#3564](https://github.com/microsoft/BotFramework-WebChat/pull/3564)
+-  Fixes [#3534](https://github.com/microsoft/BotFramework-WebChat/issues/3534). Remove 2020 deprecations, by [@corinagum](https://github.com/corinagum) in PR [#3564](https://github.com/microsoft/BotFramework-WebChat/pull/3564) and [#3728](https://github.com/microsoft/BotFramework-WebChat/pull/3728)
 -  Fixes [#3561](https://github.com/microsoft/BotFramework-WebChat/issues/3561). Remove MyGet mentions from samples, by [@corinagum](https://github.com/corinagum) in PR [#3564](https://github.com/microsoft/BotFramework-WebChat/pull/3564)
 -  Fixes [#3537](https://github.com/microsoft/BotFramework-WebChat/issues/3537). Fix some carousels improperly using aria-roledescription, by [@corinagum](https://github.com/corinagum) in PR [#3599](https://github.com/microsoft/BotFramework-WebChat/pull/3599)
 -  Fixes [#3483](https://github.com/microsoft/BotFramework-WebChat/issues/3483). IE11 anchors fixed to open securely without 'noreferrer' or 'noopener', by [@corinagum](https://github.com/corinagum) in PR [#3607](https://github.com/microsoft/BotFramework-WebChat/pull/3607)
 -  Fixes [#3565](https://github.com/microsoft/BotFramework-WebChat/issues/3565). Allow strikethrough `<s>` on sanitize markdown, by [@corinagum](https://github.com/corinagum) in PR [#3646](https://github.com/microsoft/BotFramework-WebChat/pull/3646)
 -  Fixes [#3672](https://github.com/microsoft/BotFramework-WebChat/issues/3672). Center the icon of send box buttons vertically and horizontally, by [@compulim](https://github.com/compulim) in PR [#3673](https://github.com/microsoft/BotFramework-WebChat/pull/3673)
+-  Fixes [#3683](https://github.com/microsoft/BotFramework-WebChat/issues/3683). Activities should be acknowledged when user scrolls to bottom, by [@compulim](https://github.com/compulim) in PR [#3684](https://github.com/microsoft/BotFramework-WebChat/pull/3684)
+-  Fixes [#3431](https://github.com/microsoft/BotFramework-WebChat/issues/3431). Race condition between the first bot activity and first user activity should not cause the first bot activity to be delayed, by [@compulim](https://github.com/compulim) in PR [#3705](https://github.com/microsoft/BotFramework-WebChat/pull/3705)
+-  Fixes [#3676](https://github.com/microsoft/BotFramework-WebChat/issues/3676). Activities without text should not generate bogus `aria-labelledby`, by [@compulim](https://github.com/compulim) in PR [#3697](https://github.com/microsoft/BotFramework-WebChat/pull/3697)
+-  Fixes [#3625](https://github.com/microsoft/BotFramework-WebChat/issues/3625). Update 'no screen reader for custom activity middleware' warning and add screen reader renderer documentation to `ACCESSIBILITY.md`, by [@corinagum](https://github.com/corinagum) in PR [#3689](https://github.com/microsoft/BotFramework-WebChat/pull/3689)
+-  Fixes [#3453](https://github.com/microsoft/BotFramework-WebChat/issues/3453). Fixes plain text file attachments to show download link when uploaded, by [@corinagum](https://github.com/corinagum) in PR [#3711](https://github.com/microsoft/BotFramework-WebChat/pull/3711)
+-  Fixes [#3612](https://github.com/microsoft/BotFramework-WebChat/issues/3612). Carousel flippers in suggested actions are given extra padding, by [@compulim](https://github.com/compulim) and [@Quirinevwm](https://github.com/Quirinevwm) in PR [#3704](https://github.com/microsoft/BotFramework-WebChat/pull/3704)
+-  Fixes [#3411](https://github.com/microsoft/BotFramework-WebChat/issues/3411). With Direct Line Speech, clicking on microphone button during speech recognition should no longer stop working, by [@compulim](https://github.com/compulim) in PR [#3694](https://github.com/microsoft/BotFramework-WebChat/pull/3694)
+   -  Although it no locker lock up microphone, clicking on the microphone button has no effect because Direct Line Speech does not support aborting speech recognition
+-  Fixes [#3421](https://github.com/microsoft/BotFramework-WebChat/issues/3421). With Direct Line Speech, after not able to recognize any speech, it should no longer stop working, by [@compulim](https://github.com/compulim) in PR [#3694](https://github.com/microsoft/BotFramework-WebChat/pull/3694)
+-  Fixes [#3616](https://github.com/microsoft/BotFramework-WebChat/issues/3616). [Accessibility documentation] Update activity timestamp grouping to match visual UI, by [@amal-khalaf](https://github.com/amal-khalaf) in PR [#3708](https://github.com/microsoft/BotFramework-WebChat/pull/3708)
+-  Fixes [#3718](https://github.com/microsoft/BotFramework-WebChat/issues/3718). Fixed `webpack.config.js` to use default settings of `['browser', 'module', 'main']` and resolved issues with `uuid` package in IE11, by [@compulim](https://github.com/compulim) in PR [#3726](https://github.com/microsoft/BotFramework-WebChat/pull/3726)
+-  Fixes [#3622](https://github.com/microsoft/BotFramework-WebChat/issues/3622). Apply pushed button style options and `aria-pressed` on Adaptive Cards selected buttons, by [@amal-khalaf](https://github.com/amal-khalaf) in PR [#3710](https://github.com/microsoft/BotFramework-WebChat/pull/3710)
+-  Fixes [#3618](https://github.com/microsoft/BotFramework-WebChat/issues/3618). Fix Adaptive Cards anchors being disabled when Adaptive Cards is obsolete, by [@corinagum](https://github.com/corinagum) in PR [#3687](https://github.com/microsoft/BotFramework-WebChat/pull/3687)
+-  Fixes [#3747](https://github.com/microsoft/BotFramework-WebChat/issues/3747). `aria-pressed` and `aria-role` is not properly set on Adaptive Cards submit buttons, by [@amal-khalaf](https://github.com/amal-khalaf) in PR [#3744](https://github.com/microsoft/BotFramework-WebChat/pull/3744)
+-  Fixes [#3750](https://github.com/microsoft/BotFramework-WebChat/issues/3750). Debump Node.js engines requirements for some packages to `12.0.0`, by [@compulim](https://github.com/compulim) in PR [#3753](https://github.com/microsoft/BotFramework-WebChat/pull/3753)
+-  Fixes [#3760](https://github.com/microsoft/BotFramework-WebChat/issues/3760). Use `<ErrorBoundary>` to wrap around attachment renderer, by [@compulim](https://github.com/compulim) in PR [#3761](https://github.com/microsoft/BotFramework-WebChat/pull/3761)
+-  Fixes [#3764](https://github.com/microsoft/BotFramework-WebChat/issues/3764). Added `role="group"` to the focusable transcript to enable `aria-activedescendant`, by [@compulim](https://github.com/compulim) in PR [#3765](https://github.com/microsoft/BotFramework-WebChat/issues/3765)
 
 ### Changed
 
--  Bumped all dependencies to the latest versions, by [@compulim](https://github.com/compulim) in PR [#3594](https://github.com/microsoft/BotFramework-WebChat/pull/3594)
+-  Bumped all dependencies to the latest versions, by [@compulim](https://github.com/compulim) in PR [#3594](https://github.com/microsoft/BotFramework-WebChat/pull/3594), PR [#3694](https://github.com/microsoft/BotFramework-WebChat/pull/3694), and PR [#3544](https://github.com/microsoft/BotFramework-WebChat/pull/3544)
    -  Development dependencies
       -  [`@babel/cli@7.12.1`](https://npmjs.com/package/@babel/cli)
       -  [`@babel/core@7.12.3`](https://npmjs.com/package/@babel/core)
@@ -82,18 +276,23 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
       -  [`webpack@4.44.2`](https://npmjs.com/package/webpack)
    -  Production dependencies
       -  [`@babel/runtime@7.12.5`](https://npmjs.com/package/@babel/runtime)
+      -  [`botframework-directlinejs@0.14.1`](https://npmjs.com/package/botframework-directlinejs)
       -  [`globalize@1.6.0`](https://npmjs.com/package/globalize)
       -  [`markdown-it@12.0.2`](https://npmjs.com/package/markdown-it)
+      -  [`microsoft-cognitiveservices-speech-sdk@1.15.1`](https://npmjs.com/package/microsoft-cognitiveservices-speech-sdk)
       -  [`react-redux@7.2.2`](https://npmjs.com/package/react-redux)
       -  [`redux@4.0.5`](https://npmjs.com/package/redux)
       -  [`sanitize-html@2.1.2`](https://npmjs.com/package/sanitize-html)
+      -  [`web-speech-cognitive-services@7.1.0`](https://npmjs.com/package/web-speech-cognitive-services)
       -  [`whatwg-fetch@3.4.1`](https://npmjs.com/package/whatwg-fetch)
--  [#3392](https://github.com/microsoft/BotFramework-WebChat/issues/3392) Bumped Adaptive Cards to the 2.5.0, by [@corinagum](https://github.com/corinagum) in PR [#3630](https://github.com/microsoft/BotFramework-WebChat/pull/3630)
+-  Resolves [#3392](https://github.com/microsoft/BotFramework-WebChat/issues/3392) Bumped Adaptive Cards to 2.5.0, by [@corinagum](https://github.com/corinagum) in PR [#3630](https://github.com/microsoft/BotFramework-WebChat/pull/3630)
 
 ### Samples
 
 -  Fixes [#3473](https://github.com/microsoft/BotFramework-WebChat/issues/3473). Fix samples using activityMiddleware (from 4.10.0 breaking changes), by [@corinagum](https://github.com/corinagum) in PR [#3601](https://github.com/microsoft/BotFramework-WebChat/pull/3601)
-- Fixes [#3434](https://github.com/microsoft/BotFramework-WebChat/issues/3434). Dispatched event, postBack, or messageBack + activityMiddleware causes fatal error, by [@amal-khalaf](https://github.com/amal-khalaf) in PR [#3671](https://github.com/microsoft/BotFramework-WebChat/pull/3671)
+-  Fixes [#3582](https://github.com/microsoft/BotFramework-WebChat/issues/3582). Fix Disable Adaptive Cards sample, by [@corinagum](https://github.com/corinagum) in PR [#3687](https://github.com/microsoft/BotFramework-WebChat/pull/3687)
+-  Fixes [#3434](https://github.com/microsoft/BotFramework-WebChat/issues/3434). Dispatched event, postBack, or messageBack + activityMiddleware causes fatal error, by [@amal-khalaf](https://github.com/amal-khalaf) in PR [#3671](https://github.com/microsoft/BotFramework-WebChat/pull/3671)
+-  Fixes [#3215](https://github.com/microsoft/BotFramework-WebChat/issues/3215). Fix SSO samples `window.opener.postMessage`, by [@corinagum](https://github.com/corinagum) in PR [#3696](https://github.com/microsoft/BotFramework-WebChat/pull/3696)
 
 ## [4.11.0] - 2020-11-04
 

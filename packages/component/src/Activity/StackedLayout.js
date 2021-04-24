@@ -53,7 +53,7 @@ const ROOT_STYLE = {
       display: 'flex',
       flexDirection: 'column',
 
-      // This "overflow: hidden" is to make sure text overflow we get clipped correctly.
+      // This "overflow: hidden" is to make sure text overflow will get clipped correctly.
       // Related to the test at basic.js "long URLs with keep-all".
       overflow: 'hidden'
     },
@@ -138,7 +138,7 @@ const StackedLayout = ({
 
   return (
     <div
-      aria-labelledby={ariaLabelId}
+      aria-labelledby={activityDisplayText ? ariaLabelId : undefined}
       aria-roledescription="activity"
       className={classNames('webchat__stacked-layout', rootClassName, stackedLayoutStyleSet + '', {
         'webchat__stacked-layout--extra-trailing': extraTrailing,

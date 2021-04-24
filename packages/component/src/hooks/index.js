@@ -2,9 +2,12 @@ import useDictateAbortable from './useDictateAbortable';
 import useFocus from './useFocus';
 import useFocusSendBox from './useFocusSendBox';
 import useObserveScrollPosition from './useObserveScrollPosition';
+import useObserveTranscriptFocus from './useObserveTranscriptFocus';
 import useRenderMarkdownAsHTML from './useRenderMarkdownAsHTML';
+import useScrollDown from './useScrollDown';
 import useScrollTo from './useScrollTo';
 import useScrollToEnd from './useScrollToEnd';
+import useScrollUp from './useScrollUp';
 import useSendFiles from './useSendFiles';
 import useStyleSet from './useStyleSet';
 import useWebSpeechPonyfill from './useWebSpeechPonyfill';
@@ -21,9 +24,12 @@ export {
   useMicrophoneButtonClick,
   useMicrophoneButtonDisabled,
   useObserveScrollPosition,
+  useObserveTranscriptFocus,
   useRenderMarkdownAsHTML,
+  useScrollDown,
   useScrollTo,
   useScrollToEnd,
+  useScrollUp,
   useSendBoxSpeechInterimsVisible,
   // We are overwriting the `useSendFiles` hook from bf-wc-api and adding thumbnailing support.
   useSendFiles,

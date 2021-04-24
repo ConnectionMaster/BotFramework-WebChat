@@ -86,6 +86,7 @@ Following is the list of hooks supported by Web Chat API.
 -  [`useMarkActivityAsSpoken`](#usemarkactivityasspoken)
 -  [`useNotification`](#usenotification)
 -  [`useObserveScrollPosition`](#useobservescrollposition)
+-  [`useObserveTranscriptFocus`](#useobservetranscriptfocus)
 -  [`usePerformCardAction`](#useperformcardaction)
 -  [`usePostActivity`](#usepostactivity)
 -  [`useReferenceGrammarID`](#usereferencegrammarid)
@@ -97,8 +98,10 @@ Following is the list of hooks supported by Web Chat API.
 -  [`useRenderMarkdownAsHTML`](#userendermarkdownashtml)
 -  [`useRenderToast`](#userendertoast)
 -  [`useRenderTypingIndicator`](#userendertypingindicator)
+-  [`useScrollDown`](#usescrolldown)
 -  [`useScrollTo`](#usescrollto)
 -  [`useScrollToEnd`](#usescrolltoend)
+-  [`useScrollUp`](#usescrollup)
 -  [`useSendBoxValue`](#usesendboxvalue)
 -  [`useSendEvent`](#usesendevent)
 -  [`useSendFiles`](#usesendfiles)
@@ -697,6 +700,30 @@ To stop observing scroll positions, pass a falsy value to the `observer` argumen
 
 > If there is more than one transcripts, scrolling any of them will trigger the observer function, and there is no clear distinction of which transcript is being scrolled.
 
+## `useObserveTranscriptFocus`
+
+<!-- prettier-ignore-start -->
+```js
+useObserveTranscriptFocus(observer: (TranscriptFocusObserver? | false), deps: any[]): void
+
+type TranscriptFocusObserver = (transcriptFocus: TranscriptFocus) => void;
+
+type TranscriptFocus {
+  activity: Activity;
+}
+```
+<!-- prettier-ignore-end -->
+
+This function accepts an observer function. When the focus inside transcript has changed, the observer function will be called with the latest `TranscriptFocus`.
+
+Initially, when the transcript is initialized, it will call the observer function with `activity` of `undefined`. It will also be called with `undefined` when the transcript has changed and the focus need to be reset.
+
+Since the observer function will be called rapidly, please keep the code in the function as lightweight as possible.
+
+To stop observing scroll positions, pass a falsy value to the `observer` argument.
+
+> If there is more than one transcripts, any of them will trigger the observer function, and there is no clear distinction of which transcript the focus has changed.
+
 ## `usePerformCardAction`
 
 <!-- prettier-ignore-start -->
@@ -896,6 +923,16 @@ This function is for rendering typing indicator for all participants of the conv
 -  `typing` lists participants who did not explicitly stopped typing. This list is a superset of `activeTyping`.
 -  `visible` indicates whether typing indicator should be shown in normal case. This is based on participants in `activeTyping` and their `role` (role not equal to `"user"`).
 
+## `useScrollDown`
+
+<!-- prettier-ignore-start -->
+```js
+useScrollDown(): () => void
+```
+<!-- prettier-ignore-end -->
+
+This hook will return a function that, when called, will scroll elements down the transcript. This is an important feature for AT accessibility.
+
 ## `useScrollTo`
 
 <!-- prettier-ignore-start -->
@@ -926,6 +963,16 @@ useScrollToEnd(): () => void
 <!-- prettier-ignore-end -->
 
 This hook will return a function that, when called, will smoothly scroll the transcript view to the end.
+
+## `useScrollUp`
+
+<!-- prettier-ignore-start -->
+```js
+useScrollUp(): () => void
+```
+<!-- prettier-ignore-end -->
+
+This hook will return a function that, when called, will scroll elements up the transcript. This is an important feature for AT accessibility.
 
 ## `useSendBoxValue`
 
@@ -1084,7 +1131,7 @@ useStyleOptions(): [StyleOptions]
 
 This hook will return the style options. UI components should honor the styling preferences.
 
-The value is not the same as the props. Web Chat will merge the style options passed in props with default values specified in [`defaultStyleOptions.js`](https://github.com/microsoft/BotFramework-WebChat/blob/master/packages/component/src/Styles/defaultStyleOptions.js).
+The value is not the same as the props. Web Chat will merge the style options passed in props with default values specified in [`defaultStyleOptions.ts`](https://github.com/microsoft/BotFramework-WebChat/blob/master/packages/api/src/defaultStyleOptions.ts) and [`adaptiveCards/defaultStyleOptions.ts`](https://github.com/microsoft/BotFramework-WebChat/blob/master/packages/bundle/src/adaptiveCards/defaultStyleOptions.ts) when Adaptive Cards is enabled.
 
 To modify the value of `styleOptions` state, change the props you pass to Web Chat.
 

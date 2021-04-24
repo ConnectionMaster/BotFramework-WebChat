@@ -76,18 +76,20 @@
         const BotActivityDecorator = ({ activityID, children }) => {
           const postActivity = usePostActivity();
 
-          const handleDownvoteButton = useCallback(() => {
+          const addMessageReaction = helpful => {
             postActivity({
               type: 'messageReaction',
-              reactionsAdded: [{ activityID, helpful: -1 }]
+              reactionsAdded: [{ type: helpful === 1 ? 'ThumbsUp' : 'ThumbsDown' }],
+              replyToId: activityID
             });
+          };
+
+          const handleDownvoteButton = useCallback(() => {
+            addMessageReaction(-1);
           }, [activityID, postActivity]);
 
           const handleUpvoteButton = useCallback(() => {
-            postActivity({
-              type: 'messageReaction',
-              reactionsAdded: [{ activityID, helpful: 1 }]
-            });
+            addMessageReaction(1);
           }, [activityID, postActivity]);
 
           return (
@@ -114,7 +116,11 @@
         const activityMiddleware = () => next => (...setupArgs) => {
           const [card] = setupArgs;
 
-          if (card.activity.from.role === 'bot') {
+          if (card.activity.type === 'messageReaction') {
+            // Currently, Web Chat does not handle "messageReaction" activity and will show a warning in console log as it is an unknown activity.
+            // In this sample, we will disable the rendering of "messageReaction" activity, so the warning is not shown.
+            return false;
+          } else if (card.activity.from.role === 'bot') {
             return (...renderArgs) => (
               <BotActivityDecorator key={card.activity.id} activityID={card.activity.id}>
                 {next(...setupArgs)(...renderArgs)}
